@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+import StoreFront from "./StoreFront.js";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const logOutButton = (
+        <>
+            <StoreFront/>
+            <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
+        </>
+    );
+    const logInButton = (
+        <>
+            <h2>Please login</h2>
+            <button className="btn btn-primary" onClick={() => setLoggedIn(true)}>Login</button>
+        </>
+    );
+
+    return loggedIn ? logOutButton : logInButton;
+
 }
 
 export default App;
